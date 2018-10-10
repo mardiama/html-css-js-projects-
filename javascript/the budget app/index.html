@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,300,400,600" rel="stylesheet" type="text/css">
+    <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">
+    <link type="text/css" rel="stylesheet" href="style.css">
+    <title>Budgety</title>
+</head>
+
+<body>
+
+    <div class="firstSection">
+        <div class="budget">
+            <div id="budgetTitle">
+                <p>Available Budget in October:</p>
+            </div>
+
+            <div id="budgetValue">+ 2,345.64</div>
+
+            <div class="budgetIncome">
+                <div id="incomeText">Income</div>
+                <div id="incomeValue">+ 4,300.00</div>
+                <div id="incomePercentage">20%</div>
+            </div>
+
+            <div class="budgetExpenses">
+                <div id="expensesText">Expenses</div>
+                <div id="expensesValue">- 1,954.36</div>
+                <div id="expensesPercentage">45%</div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="secondSection">
+        <select id="add">
+            <option value="income">+</option>
+            <option value="expenses">-</option>
+        </select>
+        <input type="text" id="addDescription" placeholder="Add description">
+        <input type="number" id="value" placeholder="Value">
+        <button id="addBtn"><i class="ion-ios-checkmark-outline"></i></button>
+
+
+    </div>
+
+    <div class="thirdSection">
+
+        <div class="income-expenses">
+            <div class="income">
+                <h2 class="icomeTitle">Income</h2>
+            </div>
+            <div class="expenses">
+                <h2 class="expensesTitle">Expenses</h2>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        //module for the UI
+
+        var UIController = (function() {
+
+            var DOMstrings = {
+                inputType: '#add',
+                inputDescription: '#addDescription',
+                inputValue: '#value',
+                inputBtn: '#addBtn'
+            };
+
+            return {
+
+                getInput: function() {
+
+                    return {
+                        //return an object rather than 3 values
+                        type: document.querySelector(DOMstrings.inputType).value,
+                        description: document.querySelector(DOMstrings.inputDescription).value,
+                        value: document.querySelector(DOMstrings.inputValue).value
+                    };
+                },
+                getDOMstrings: function() {
+                    return DOMstrings;
+                }
+            };
+
+
+
+        })();
+
+        //module for the data , create structures to store data, functions that add/delete data, functions that calculate different things etc.
+        var budgetController = (function() {
+
+            //function constructor
+            var Expense = function(id, description, value) {
+                this.id = id;
+                this.description = description;
+                this.value = value;
+            };
+            //function constructor
+            var Income = function(id, description, value) {
+                this.id = id;
+                this.description = description;
+                this.value = value;
+            };
+
+            var data = {
+                allItems: {
+                    exp: [],
+                    inc: []
+                }
+            }
+
+        })();
+
+        //controller is responsible for communication generally. There are event listeners that will react when the user click or press something in our app.
+        var controller = (function(budgetCtrl, UICtrl) {
+
+            var setupEventListeners = function() {
+                var DOM = UICtrl.getDOMstrings();
+
+                //function when click the button
+                document.querySelector(DOM.inputBtn).addEventListener('click', ctrlAddItem);
+
+                //function when enter the enterButton
+                document.addEventListener('keypress', function(event) {
+                    if (event.keyCode === 13) {
+                        ctrlAddItem();
+                    }
+                });
+
+            };
+
+            var ctrlAddItem = function() {
+                var input;
+                // Get the field input data
+                input = UICtrl.getInput();
+                console.log(input);
+
+            };
+
+
+            return {
+                init: function() {
+                    console.log('Application has started.');
+                    setupEventListeners();
+                }
+            };
+
+        })(budgetController, UIController);
+
+        controller.init();
+
+    </script>
+</body>
+
+</html>

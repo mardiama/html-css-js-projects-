@@ -1,0 +1,182 @@
+<!---
+Change the game to follow these rules:
+
+1. A player looses his ENTIRE score when he rolls two 6 in a row. After that, it's the next player's turn. 
+2. Add an input field to the HTML where players can set the winning score, so that they can change the predefined score of 100. 
+3. Add another dice to the game, so that there are two dices now. The player looses his current score when one of them is a 1. -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link type="text/css" rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,600" rel="stylesheet" type="text/css">
+    <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">
+
+    <title>Pig Game</title>
+</head>
+
+<body>
+
+    <div class="wrapper">
+
+        <div class="player-0 active">
+            <div class="player-name" id="name-0">PLAYER 1</div>
+            <div class="player-score" id="score-0">43</div>
+            <div class="player-current-box">
+                <div class="player-current-label">CURRENT</div>
+                <div class="player-current-score" id="current-0">11</div>
+            </div>
+        </div>
+
+        <button class="btn-new"><i class="ion-ios-plus-outline"></i>New game</button>
+        <button class="btn-roll"><i class="ion-ios-loop"></i>Roll dice</button>
+        <button class="btn-hold"><i class="ion-ios-download-outline"></i>Hold</button>
+
+        <input type='text' id='textInput' placeholder='FINAL SCORE'>
+
+        <div class="player-1">
+            <div class="player-name" id="name-1">PLAYER 2</div>
+            <div class="player-score" id="score-1">72</div>
+            <div class="player-current-box">
+                <div class="player-current-label">CURRENT</div>
+                <div class="player-current-score" id="current-1">0</div>
+            </div>
+        </div>
+
+        <!-- <div><img id="dice" src="dice-5.png"></div> -->
+
+        <div><img id="dice1" src="dice-5.png"></div>
+        <div><img id="dice2" src="dice-5.png"></div>
+
+
+
+    </div>
+
+    <script>
+        var dice, dice1, dice2, activePlayer, roundScore, score, gamePlaying, diceArray;
+
+        init();
+
+        document.querySelector('.btn-roll').addEventListener('click', function() {
+
+
+            if (gamePlaying) {
+
+                dice1 = Math.floor(Math.random() * 6) + 1;
+                dice2 = Math.floor(Math.random() * 6) + 1;
+                console.log(dice1);
+                console.log(dice2);
+
+                /* 
+                dice = Math.floor(Math.random() * 6) + 1;
+                diceArray[1] = dice;
+                if (diceArray[1] === 6 && diceArray[0] === diceArray[1]) {
+                     document.querySelector('#score-' + activePlayer).textContent = '0';
+                     diceArray = [0, 0];
+                     newPlayer();
+
+                 } else {
+                     diceArray[0] = diceArray[1];
+                 }
+                 
+                document.querySelector('#dice').style.display = 'block';
+                document.querySelector('#dice').src = 'dice-' + dice + '.png';
+                
+                 if (dice !== 1) {
+                    roundScore += dice;
+                    document.querySelector('#current-' + activePlayer).textContent = roundScore;
+                } else {
+                    newPlayer();
+                }
+                
+                */
+
+                document.querySelector('#dice1').style.display = 'block';
+                document.querySelector('#dice1').src = 'dice-' + dice1 + '.png';
+                document.querySelector('#dice2').style.display = 'block';
+                document.querySelector('#dice2').src = 'dice-' + dice2 + '.png';
+
+                if (dice1 !== 1 && dice2 !== 1) {
+                    roundScore += (dice1 + dice2);
+                    document.querySelector('#current-' + activePlayer).textContent = roundScore;
+                } else {
+                    document.querySelector('#current-' + activePlayer).textContent = '0';
+                    newPlayer();
+                }
+            }
+        });
+
+        document.querySelector('.btn-hold').addEventListener('click', function() {
+
+
+            if (gamePlaying) {
+                score[activePlayer] += roundScore;
+                document.querySelector('#score-' + activePlayer).textContent = score[activePlayer];
+                var input = document.getElementById('textInput').value;
+                var targetScore;
+
+                if (input) {
+                    targetScore = input;
+                } else {
+                    targetScore = 100;
+                }
+
+                if (score[activePlayer] < targetScore) {
+                    newPlayer();
+                } else {
+                    document.querySelector('#name-' + activePlayer).textContent = 'winner';
+                    document.querySelector('.player-' + activePlayer).classList.add('winner');
+                    document.querySelector('.player-' + activePlayer).classList.toggle('active');
+                    gamePlaying = false;
+                }
+            }
+        });
+
+        document.querySelector('.btn-new').addEventListener('click', init);
+
+        function newPlayer() {
+            document.querySelector('#current-' + activePlayer).textContent = '0';
+            roundScore = 0;
+            activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
+            document.querySelector('.player-0').classList.toggle('active');
+            document.querySelector('.player-1').classList.toggle('active');
+            //document.querySelector('#dice').style.display = 'none';
+            document.querySelector('#dice1').style.display = 'none';
+            document.querySelector('#dice2').style.display = 'none';
+
+        }
+
+
+        function init() {
+            activePlayer = 0;
+            roundScore = 0;
+            score = [0, 0];
+            gamePlaying = true;
+            //diceArray = [0, 0];
+
+            document.querySelector('#score-0').textContent = '0';
+            document.querySelector('#score-1').textContent = '0';
+            document.querySelector('#current-0').textContent = '0';
+            document.querySelector('#current-1').textContent = '0';
+
+            //document.querySelector('#dice').style.display = 'none';
+            document.querySelector('#dice1').style.display = 'none';
+            document.querySelector('#dice2').style.display = 'none';
+
+            document.getElementById('name-0').textContent = 'Player 1';
+            document.getElementById('name-1').textContent = 'Player 2';
+
+            document.querySelector('.player-0').classList.remove('winner');
+            document.querySelector('.player-1').classList.remove('winner');
+            document.querySelector('.player-0').classList.remove('active');
+            document.querySelector('.player-1').classList.remove('active');
+            document.querySelector('.player-0').classList.add('active');
+
+        }
+
+    </script>
+</body>
+
+</html>

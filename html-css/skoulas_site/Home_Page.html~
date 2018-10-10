@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="description" content="Βασίλης Σκουλάς" />
+    <meta name="author" content="M.Diamantaki" />
+
+    <link rel="stylesheet" type="text/css" href="skoulas.css" />
+    <title>Βασίλης Σκουλάς</title>
+
+</head>
+
+<body>
+
+
+    <div id="container">
+
+        <div id="header">
+            <h1><span style="color:white; font-family:PT Serif;">Skoulas Vasilis/Σκουλάς Βασίλης Fan Page</span></h1>
+        </div>
+
+
+        <div id="menu">
+            <ul>
+                <li><a href="Home_Page.html"><strong>ΑΡΧΙΚΗ</strong></a>
+                </li>
+                <li><a href="Biography.html"><strong>ΒΙΟΓΡΑΦΙΑ</strong></a>
+                </li>
+                <li><a href="Multimedia.html"><strong>ΔΙΣΚΟΓΡΑΦΙΑ</strong></a>
+                </li>
+                <li><a href="Photo Gallery.html"><strong>ΦΩΤΟΓΡΑΦΙΕΣ</strong></a>
+                </li>
+                <li><a href="Videos.html"><strong>ΒΙΝΤΕΟ</strong></a>
+                </li>
+                <li><a href="News.html"><strong>ΝΕΑ</strong></a>
+                </li>
+                <li><a href="Contact.html"><strong>ΕΠΙΚΟΙΝΩΝΙΑ</strong></a>
+                </li>
+
+            </ul>
+        </div>
+
+
+
+        <div id="leftsidebar">
+            <ul type="square">
+                <li>TOP SONGS</li>
+                <ol>
+                    <li><a href="https://www.youtube.com/watch?v=j46xysNrGWQ" target="_blanck">ΣΤΟ ΞΕΣΠΑΣΜΑ ΤΟΥ ΦΕΓΓΑΡΙΟΥ</a>
+                    </li>
+                    <li><a href="https://www.youtube.com/watch?v=j46xysNrGWQ" target="_blanck"> ΠΟΛΛΕΣ ΦΟΡΕΣ ΦΕΓΓΑΡΙ ΜΟΥ</a>
+                    </li>
+                    <li><a href="https://www.youtube.com/watch?v=RLtc5gD358s" target="_blanck"> ΤΑ ΑΓΡΙΑ ΠΟΥΛΙΑ</a>
+                    </li>
+                    <li><a href="https://www.youtube.com/watch?v=WClzhLlswXU" target="_blanck"> ΤΟ ΚΑΠΗΛΕΙΟ</a>
+                    </li>
+                    <li><a href="https://www.youtube.com/watch?v=_HFqBapPL1I" target="_blanck"> ΓΑΡΔΕΝΙΑ</a>
+                    </li>
+                    <li><a href="https://www.youtube.com/watch?v=lHo8tZhhctQ" target="_blanck"> ΤΑ ΜΑΤΙΑ ΣΟΥ Μ΄ΑΡΕΣΟΥΝΕ</a>
+                    </li>
+
+                </ol>
+            </ul>
+        </div>
+
+
+        <div id="main">
+
+            <p> ΑΥΤΗ Η ΣΕΛΙΔΑ ΦΤΙΑΧΤΗΚΕ ΜΕ ΣΕΒΑΣΜΟ ΚΑΙ ΑΓΑΠΗ ΓΙΑ ΤΟΝ ΜΕΓΑΛΟ ΜΑΣ ΚΑΛΛΙΤΕΧΝΗ ΤΗΣ ΚΡΗΤΙΚΗΣ ΜΟΥΣΙΚΗΣ "ΒΑΣΙΛΗ ΣΚΟΥΛΑ". ΓΝΩΡΙΣΤΕ ΤΗΝ ΑΞΙΟΛΟΓΗ ΠΟΡΕΙΑ ΤΟΥ ΜΕΣΑ ΑΠΟ ΤΗΝ ΣΕΛΙΔΑ ΜΑΣ, ΜΕ ΣΤΟΙΧΕΙΑ ΠΟΥ ΣΥΛΛΕΧΘΗΚΑΝ ΚΑΙ ΑΝΤΙΠΡΟΣΩΠΕΥΟΥΝ ΚΑΠΟΙΑ ΚΟΜΜΑΤΙΑ ΑΠΟ ΤΗΝ ΚΑΛΛΙΤΕΧΝΙΚΗ ΤΟΥ ΖΩΗ........ΣΑΣ ΕΥΧΑΡΙΣΤΟΥΜΕ.....!!!
+        </div>
+
+
+
+
+
+        <div id="footer">
+            <div id="rightfooter">
+                <p>@ M.Diamantaki</p>
+            </div>
+            <div id="leftfooter">
+                <p>Powered by M.Diamantaki</p>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+</body>
+
+
+</html>

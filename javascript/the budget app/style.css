@@ -1,0 +1,184 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    color: #555;
+    font-family: Open Sans;
+    font-size: 15px;
+    height: 100vh;
+    font-weight: 500;
+
+}
+
+
+.firstSection {
+    height: 40vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url(back.png);
+    background-size: cover;
+    background-position: center;
+
+}
+
+.budget {
+    width: 400px;
+    height: 40vh;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    padding: 10px;
+}
+
+#budgetTitle {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: 300;
+}
+
+#budgetValue {
+    font-weight: 300;
+    font-size: 46px;
+    text-align: center;
+    margin-bottom: 25px;
+    letter-spacing: 2px;
+}
+
+.budgetIncome,
+.budgetExpenses {
+    padding: 12px;
+    text-transform: uppercase;
+    height: 50px;
+}
+
+.budgetIncome {
+    margin-bottom: 15px;
+    background-color: #28B9B5;
+}
+
+.budgetExpenses {
+    background-color: red;
+}
+
+#incomeText,
+#expensesText {
+    float: left;
+    font-size: 13px;
+    color: #444;
+}
+
+#incomeText {
+    margin-right: 168px;
+}
+
+#expensesText {
+    margin-right: 160px;
+}
+
+
+#incomeValue,
+#expensesValue {
+    letter-spacing: 1px;
+    float: left;
+    margin-right: 10px;
+
+}
+
+#incomePercentage,
+#expensesPercentage {
+    float: left;
+    width: 34px;
+    font-size: 11px;
+    padding: 3px;
+    background-color: rgba(255, 255, 255, 0.2);
+    text-align: center;
+    border-radius: 3px;
+
+}
+
+.secondSection {
+    padding: 15px;
+    background-color: #f7f7f7;
+    margin: 0 auto;
+    text-align: center;
+    border: 1px solid #e7e7e7;
+    height: 70px;
+}
+
+#add {
+    width: 50px;
+    border: 1px solid #e7e7e7;
+    font-size: 18px;
+    color: inherit;
+    background-color: #fff;
+    margin-right: 10px;
+    font-weight: 300;
+}
+
+#addDescription {
+    border: 1px solid #e7e7e7;
+    background-color: #fff;
+    color: inherit;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 12px 15px;
+    margin-right: 10px;
+    border-radius: 5px;
+    width: 400px;
+}
+
+#value {
+    border: 1px solid #e7e7e7;
+    background-color: #fff;
+    color: inherit;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 12px 15px;
+    border-radius: 5px;
+    width: 200px;
+}
+
+#addBtn {
+    margin-left: 15px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #28B9B5;
+    font-size: 25px;
+}
+
+.thirdSection {
+    height: 310px;
+}
+
+.income-expenses {
+    width: 803px;
+    height: 250px;
+    margin: 30px 0;
+    position:absolute;
+    left:50%;
+    transform: translateX(-50%);
+}
+
+.income {
+    float: left;
+    width: 400px;
+    color: #28B9B5;
+}
+
+.expenses {
+   
+    float: left;
+    width: 400px;
+    color: #FF5049; 
+}
+
+h2 {
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 15px;
+}

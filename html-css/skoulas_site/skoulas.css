@@ -1,0 +1,183 @@
+body {
+    background-color: black;
+    font-family: Arial;
+    background-color: black;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: white;
+}
+/* ------ CONTAINER -----------------------------------------------------*/
+
+#container {
+    width: 900px;
+    margin: auto;
+    border: solid thin white;
+    border-style: solid;
+    border-width: 2px;
+    background-color: black;
+}
+/*------ HEADER ---------------------------------------------------------*/
+
+#header {
+    margin: 20px;
+    padding: 0px;
+    height: 400px;
+    background-image: url("images/Header.jpg");
+}
+
+#header h1 {
+    padding: 20px;
+    margin: 0px;
+}
+/* ------ MENU----------------------------------------------------------------*/
+
+#menu {
+    margin: 0;
+    padding-top: 0;
+    padding-left: 12px;
+    height: 71px;
+    font-family: Arial, sans-serif;
+    min-width: 800px;
+}
+
+#menu ul {
+    margin: 5px auto auto 5px;
+    float: left;
+    padding: 0;
+    height: 31px;
+    list-style-type: none;
+}
+
+#menu ul li {
+    display: inline;
+    
+}
+
+#menu ul li a {
+    color: #FFF;
+    margin: 30px;
+    text-decoration: none;
+}
+
+#menu ul li a:hover {
+    color: white;
+    background-color: gray;
+}
+
+#menu ul li:hover {
+    background-color: gray;
+}
+/*------ LEFTSIDEBAR ---------------------------------------------------------*/
+
+#leftsidebar {
+    min-height: 300px;
+    padding: 0;
+    float: left;
+    width: 180px;
+    font-size: 10pt;
+}
+
+#leftsidebar ul li {
+    margin: 5px 0;
+    padding: 5px;
+    text-align: left;
+    color: gray;
+}
+
+#leftsidebar ul li a {
+    text-align: left;
+    text-decoration: none;
+    color: white;
+}
+
+#leftsidebar a:hover {
+    background-color: gray;
+}
+/* ------ MAIN ----------------------------------------------------------------*/
+
+#main {
+    line-height: 200%;
+    padding: 2em;
+    margin-top: 10;
+    margin-bottom: 40px;
+    margin-left: 200px;
+    margin-right: 0;
+    min-height: 300px;
+    border-left: ridge thin white;
+    color: white;
+}
+
+#main1 {
+    padding-top: 20px;
+    padding-left: 30px;
+    background-color: papayawhip;
+    color: black;
+}
+
+#main2,
+#main3,
+#main4,
+#main5,
+#main6,
+#main7,
+#main8,
+#main9,
+#main10,
+#main11 {
+    padding-left: 30px;
+    background-color: papayawhip;
+    color: black;
+}
+
+a:link {
+    color: white;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:visited {
+    color: white;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:hover {
+    color: gray;
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+a:active {
+    color: gray;
+    background-color: transparent;
+    text-decoration: underline;
+}
+/* ------ SLIDESHOW -------------------------------------------------------------*/
+
+#slideshow {
+    width: : 500px;
+    margin: 150px;
+    margin-top: 30px;
+}
+/* ------ FOOTER ----------------------------------------------------------------*/
+
+#footer {
+    height: 35px;
+    padding: 0px;
+    padding-bottom:5px;
+    margin: 0;
+    clear: both;
+    border-top: ridge thin white;
+}
+
+#rightfooter {
+    float: right;
+    color: white;
+    padding-right: 20px;
+}
+
+#leftfooter {
+    float: left;
+    color: white;
+    padding-left: 20px;
+}
