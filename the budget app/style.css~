@@ -1,0 +1,125 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    color: #555;
+    font-family: Open Sans;
+    font-size: 16px;
+    position: relative;
+    height: 100vh;
+    font-weight: 400;
+}
+
+
+
+.topSection {
+    height: 40vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url(back.png);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.budget {
+    position: absolute;
+    width: 400px;
+    height:40vh;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    padding:10px;
+}
+
+#budgetTitle {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: 300;
+
+}
+
+#budgetValue {
+    font-weight: 300;
+    font-size: 46px;
+    text-align: center;
+    margin-bottom: 25px;
+    letter-spacing: 2px;
+
+}
+
+.budgetIncome,
+.budgetExpenses {
+    padding: 12px;
+    text-transform: uppercase;
+    height :50px;
+}
+
+.budgetIncome {
+    margin-bottom: 15px;
+    background-color: #28B9B5;
+}
+
+.budgetExpenses {
+    background-color: red;
+}
+
+#incomeText,
+#expensesText {
+    float: left;
+    font-size: 13px;
+    color: #444;
+    margin-right:160px;
+  
+}
+
+#incomeValue,
+#expensesValue {
+    letter-spacing: 1px;
+    float: left;
+    margin-right:10px;
+
+}
+
+#incomePercentage,
+#expensesPercentage {
+    float: left;
+    width: 34px;
+    font-size: 11px;
+    padding: 3px 0;
+
+}
+
+#expensesPercentage {
+    background-color: rgba(255, 255, 255, 0.2);
+    text-align: center;
+    border-radius: 3px;
+}
+
+
+.bottomSection{
+    padding: 14px;
+    background-color: #f7f7f7;
+    margin: 0 auto;
+    text-align: center;
+    border:1px solid #e7e7e7;
+}
+
+
+
+#add {
+    width: 55px;
+    border: 1px solid #e7e7e7;
+    height: 44px;
+    font-size: 18px;
+    color: inherit;
+    background-color: #fff;
+    margin-right: 10px;
+    font-weight: 300;
+    transition: border 0.3s;
+}
+
+

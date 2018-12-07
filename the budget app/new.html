@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,300,400,600" rel="stylesheet" type="text/css">
+    <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">
+    <link type="text/css" rel="stylesheet" href="style.css">
+    <title>Budgety</title>
+</head>
+
+<body>
+
+    <div class="firstSection">
+        <div class="budget">
+            <div id="budgetTitle">
+                <p>Available Budget in October:</p>
+            </div>
+
+            <div id="budgetValue">+ 2,345.64</div>
+
+            <div class="budgetIncome">
+                <div id="incomeText">Income</div>
+                <div class="right" id="incomeValue">+ 4,300.00</div>
+            </div>
+
+            <div class="budgetExpenses">
+                <div id="expensesText">Expenses</div>
+                <div class="right" id="expensesValue">- 1,954.36</div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="secondSection">
+        <select id="add">
+            <option value="income">+</option>
+            <option value="expenses">-</option>
+        </select>
+        <input type="text" id="addDescription" placeholder="Add description">
+        <input type="number" id="value" placeholder="Value">
+        <button id="addBtn"><i class="ion-ios-checkmark-outline"></i></button>
+
+    </div>
+
+    <div class="thirdSection">
+
+        <div class="income-expenses">
+            <div class="income">
+                <h2>Income</h2>
+                <div class="incomeList"></div>
+                <!--
+                       <div class="item" id="income-i">
+                            <div class="itemDescription">Salary</div>
+                            <div class="right">
+                                <div class="itemValue">+ 2,100.00</div>
+                                <div class="itemDelete">
+                                    <button class="deleteBtn">
+                                        <i class="ion-ios-close-outline"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                -->
+
+            </div>
+            <div class="expenses">
+                <h2>Expenses</h2>
+                <div class="expensesList">
+                    <!--
+                        <div class="item" id="expense-i">
+                            <div class="itemDescription">Apartment rent</div>
+                            <div class="right">
+                                <div class="itemValue">- 900.00</div>
+                                <div class="itemDelete">
+                                    <button class="deleteBtn">
+                                        <i class="ion-ios-close-outline"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        -->
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        //I will create 3modules in order to lessen the dependencies on parts of the code. 
+
+        //module for the User Interface function 
+
+        var uiController = (function() {
+
+
+            return {
+                getInput: function() {
+                    return {
+                        //return an object rather than 3 values
+                        type: document.querySelector('#add').value,
+                        description: document.querySelector('#addDescription').value,
+                        value: document.querySelector('#value').value
+                    }
+                },
+                displayItem: function(obj, type) {
+
+                    var html, newHtml, element;
+                    if (type === 'income') {
+                        element = '.incomeList';
+
+                        html = '<div class="item clearfix" id="income-%counter%"><div class="itemDescription">%description%</div><div class="right clearfix"><div class="itemValue">%value%</div><div class="itemDelete"><button class="deleteBtn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
+
+                    } else if (type === 'expenses') {
+                        element = '.expensesList';
+
+                        html = '<div class="item clearfix" id="expenses-%counter%"><div class="itemDescription">%description%</div><div class="right clearfix"><div class="itemValue">%value%</div><div class="itemDelete"><button class="deleteBtn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
+                    }
+
+                    //change the above part of html code with the replace method
+                    newHtml = html.replace('%counter%', obj.counter);
+                    newHtml = newHtml.replace('%description%', obj.description);
+                    newHtml = newHtml.replace('%value%', obj.value);
+
+                    // Insert the HTML into the DOM
+
+                    document.querySelector(element).insertAdjacentHTML('beforeend', newHtml);
+
+                },
+                clearFields: function() {
+
+                    document.querySelector('#addDescription').value = "";
+                    document.querySelector('#value').value = "";
+
+                    document.querySelector('#addDescription').focus();
+
+                },
+                displayBudget: function(obj) {
+                    document.querySelector('#incomeValue').textContent = '+' + obj.sumInc;
+                    document.querySelector('#expensesValue').textContent = '-' + obj.sumExp;
+                    document.querySelector('#budgetValue').textContent = obj.sumBud;
+                },
+                deleteListItem: function(selectedId) {
+                    //delete the child not the element
+                    document.getElementById(selectedId).parentNode.removeChild(document.getElementById(selectedId));
+
+                }
+
+            };
+
+        })();
+
+        //module for the data structure function
+
+        var dataController = (function() {
+
+            //function constructor for income items 
+
+            var Income = function(counter, description, value) {
+                this.counter = counter;
+                this.description = description;
+                this.value = value;
+            };
+
+
+            //function constructor
+            var Expenses = function(counter, description, value) {
+                this.counter = counter;
+                this.description = description;
+                this.value = value;
+            };
+
+
+            //store the data in a structure
+            var data = {
+                allItems: {
+                    income: [],
+                    expenses: []
+                },
+                totals: {
+                    income: 0,
+                    expenses: 0
+                },
+                budget: 0
+            };
+
+            return {
+                storeData: function(type, des, val) {
+                    var newItem, count;
+
+                    //detect the position where the new item will be
+                    count = data.allItems[type].length;
+
+                    if (type === 'income') {
+                        newItem = new Income(count, des, val);
+                    } else if (type === 'expenses') {
+                        newItem = new Expenses(count, des, val);
+                    }
+                    //add items to the type[]  array
+                    data.allItems[type].push(newItem);
+
+                    return newItem;
+                },
+                calculateBudget: function() {
+                    var sumIncome = 0;
+                    var sumExpenses = 0;
+
+                    //calculate income
+                    for (var i = 0; i < data.allItems.income.length; i++) {
+                        sumIncome = sumIncome + parseInt(data.allItems.income[i].value);
+                        console.log('the sumincome is: ' + sumIncome);
+                    }
+                    //calculate expenses
+                    for (var i = 0; i < data.allItems.expenses.length; i++) {
+                        sumExpenses = sumExpenses + parseInt(data.allItems.expenses[i].value);
+                        console.log('the sumexpenses is: ' + sumExpenses);
+                    }
+
+                    data.totals.income = sumIncome;
+                    data.totals.expenses = sumExpenses;
+
+                    //calculate budget
+                    budget = (data.totals.income) - (data.totals.expenses);
+                    console.log('the budget is: ' + budget);
+
+                    data.budget = budget;
+
+                    //return an object rather than 3 values
+                    return {
+                        sumInc: data.totals.income,
+                        sumExp: data.totals.expenses,
+                        sumBud: data.budget
+                    };
+
+                },
+                deleteData: function(type, id) {
+
+                    var ids = [];
+                    //it is possible some ids to have been deleted and to have the array  [1 2 4 6] rather than [0 1 2 3 4 5 6]
+                    //For example i want to delete the item in the index=3 which is the item=6
+
+                    //data.allItems[type][id].splice(id,1);
+
+                    /*ids = data.allItems[type].map(function(current) {
+                         return current.id;
+                     });*/
+
+                    for (var i = 0; i < data.allItems[type].length; i++) {
+                        ids[i] = data.allItems[type][i].id;
+                        console.log(data.allItems[type]);
+                    }
+                    console.log(ids);
+
+                    var index = ids.indexOf(id);
+                    console.log(index);
+
+                    if (index) {
+                        data.allItems[type].splice(index, 1);
+                    }
+
+                }
+            };
+        })();
+
+
+        //module which will be responsible for communication between two other modules
+
+        var controller = (function(uiCtrl, dataCtrl) {
+
+            var addItem = function() {
+                var input = uiCtrl.getInput();
+                console.log(input);
+                //store the item in the data structure
+
+                if (input.description !== "" && !isNaN(input.value) && input.value > 0) {
+                    var newItem = dataCtrl.storeData(input.type, input.description, input.value);
+                    //display the new item in the user interface
+                    uiCtrl.displayItem(newItem, input.type);
+                    //clear the input fields
+                    uiCtrl.clearFields();
+                    //calculate the budget
+                    var budgetObject = dataCtrl.calculateBudget();
+                    //display the budget
+                    uiCtrl.displayBudget(budgetObject);
+                }
+
+            };
+
+            var deleteItem = function(event) {
+                var item, itemId, elemArray, type, id;
+                //console.log(event.target);
+
+                item = event.target.parentNode.parentNode.parentNode.parentNode;
+                //console.log(item);
+                itemId = item.id;
+
+                if (itemId) {
+                    console.log(itemId);
+
+                    elemArray = itemId.split('-');
+                    //console.log(elemArray);
+                    type = elemArray[0];
+                    id = parseInt(elemArray[1]);
+                    // delete the item from the data structure
+                    dataCtrl.deleteData(type, id);
+                    //delete the item from the user interface
+                    uiCtrl.deleteListItem(itemId);
+                    //update the budget
+                    var budgetObject = dataCtrl.calculateBudget();
+                    //display the budget
+                    uiCtrl.displayBudget(budgetObject);
+
+                }
+            };
+
+            var addEvents = function() {
+                //when we enter the button
+                document.querySelector('#addBtn').addEventListener('click', addItem);
+                //when we enter the enterKey
+                document.addEventListener('keypress', function(event) {
+                    if (event.keyCode === 13) {
+                        addItem();
+                    }
+                });
+
+                //Event Delegation is a way to add an event listener once for multiple html elements
+                //we cannot attach the eventListener to .deleteBtn because there are many deleteBtns in income and expenses.So we select the parent of them.
+                document.querySelector('.income-expenses').addEventListener('click', deleteItem);
+            };
+
+            //init the values
+            document.querySelector('#incomeValue').textContent = 0;
+            document.querySelector('#expensesValue').textContent = 0;
+            document.querySelector('#budgetValue').textContent = 0;
+            //when we click the button
+            addEvents();
+
+        })(uiController, dataController);
+
+    </script>
+
+</body>
+
+</html>
